@@ -11,6 +11,7 @@ namespace PingPongGame.Managers
         private static Paddle aiPaddle;
         private static Ball ball;
 
+        public static Ball Ball => ball;
 
         public static void Initialize()
         {
@@ -31,7 +32,8 @@ namespace PingPongGame.Managers
 
             if (ball.CollidesWith(playerPaddle) || ball.CollidesWith(aiPaddle))
             {
-                ball.Velocity = new Vector2D(ball.Velocity.X, -ball.Velocity.Y);
+                ball.Velocity = new Vector2D(-ball.Velocity.X, ball.Velocity.Y);
+
             }
 
             if (ball.Position.X < 0 || ball.Position.X > Constants.WINDOW_WIDTH)
@@ -45,7 +47,7 @@ namespace PingPongGame.Managers
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
-            playerPaddle.draw();
+            playerPaddle.Draw();
             aiPaddle.Draw();
             ball.Draw();
 
